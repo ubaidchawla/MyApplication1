@@ -31,89 +31,59 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class login_page_activity extends AppCompatActivity {
-    //Volley RequestQueue
-    private RequestQueue requestQueue;
-    //String variables to hold phone
-    private String phone;
-    EditText txtphn;
-    Button login;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page_activity);
 
+    }
 
-        //Initializing Views
-        txtphn=(EditText)findViewById(R.id.editText);
-        login = (Button)findViewById(R.id.button);
+    private static String generateOTP() {
+        String numbers = "1234567890";
+        Random random = new Random();
+        char[] otp = new char[5];
 
-        //Initializing the RequestQueue
-        requestQueue = Volley.newRequestQueue(this);
+        for (int i = 0; i < 5; i++) {
+            otp[i] = numbers.charAt(random.nextInt(numbers.length()));
+        }
 
-        //Adding a listener to button
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Displaying a progress dialog
-                final ProgressDialog loading = ProgressDialog.show(login_page_activity.this, "Registering", "Please wait...", false, false);
-
-                //Getting user data
-                phone = txtphn.getText().toString().trim();
-                //Again creating the string request
-                StringRequest stringRequest = new StringRequest(Request.Method.POST,config.REGISTER_URL,new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        loading.dismiss();
-                        try {
-                            //Creating the json object from the response
-                            JSONObject jsonResponse = new JSONObject(response);
-
-                            //If it is success
-                            if(jsonResponse.getString(config.TAGRESPONSE).equalsIgnoreCase("Success")){
-                                //Asking user to confirm otp
-                                Intent intent= new Intent(login_page_activity.this, verification_code.class);
-                                startActivity(intent);
-
-                            }
-                            else
-                            {
-                                //If not successful user may already have registered
-                                Toast.makeText(login_page_activity.this, " Phone number already registered", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                        catch (JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                loading.dismiss();
-                                Toast.makeText(login_page_activity.this, error.getMessage(),Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        //Adding the parameters to the request
-                        params.put(config.KEY_PHONE, phone);
-                        return params;
-                    }
-                };
-
-                //Adding request the the queue
-                requestQueue.add(stringRequest);
-            }
-        });
+        String string = new String(otp);
+        return string;
     }
 
 
+    public void apicall()
+
+    {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        //String url ="http://google.com";
+
+        String url = "https://sendpk.com/api/sms.php?username=923108102439&password=smsapi12&sender=Azmayesgah&mobile=923247648950&message=hello";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(login_page_activity.this, "success", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(login_page_activity.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void httprequest(View view)
+    {
+        Toast.makeText(this, generateOTP(), Toast.LENGTH_SHORT).show();
+        apicall();
+    }
 }
-
-
