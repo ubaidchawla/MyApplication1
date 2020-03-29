@@ -64,11 +64,15 @@ public class login_page_activity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         //String url ="http://google.com";
 
+        final String otp_generated = generateOTP();
         String url = "https://sendpk.com/api/sms.php?username=923108102439&password=smsapi12&sender=Azmayesgah&mobile=923247648950&message=hello";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Intent intent= new Intent(login_page_activity.this, verification_code.class);
+                        intent.putExtra("OTP",otp_generated);
+                        startActivity(intent);
                         Toast.makeText(login_page_activity.this, "success", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
@@ -81,9 +85,9 @@ public class login_page_activity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void httprequest(View view)
+    public void httprequest(View view)
     {
-        Toast.makeText(this, generateOTP(), Toast.LENGTH_SHORT).show();
         apicall();
+
     }
 }
