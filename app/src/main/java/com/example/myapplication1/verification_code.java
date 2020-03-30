@@ -34,8 +34,11 @@ public class verification_code extends AppCompatActivity {
 
 
         SharedPreferences sp = getSharedPreferences("com.example.myapplication1" ,Context.MODE_PRIVATE);
-        sp.edit().putString("PHONE", phone);
 
+        SharedPreferences sharedPref = getSharedPreferences("user_details",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("PHONE", phone);
+        editor.commit();
         if (otp.equals(otp_generated))
         {
             Toast.makeText(this, "verified", Toast.LENGTH_SHORT).show();
