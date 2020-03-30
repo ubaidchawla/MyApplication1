@@ -67,6 +67,7 @@
         android:layout_height="57dp"
         android:background="@color/red"
         android:text="Verify"
+        android:onClick="verify"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="19dp"

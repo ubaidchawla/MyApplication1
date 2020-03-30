@@ -3,10 +3,13 @@ package com.example.myapplication1;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Config;
 import android.view.View;
 import android.widget.Button;
@@ -58,36 +61,42 @@ public class login_page_activity extends AppCompatActivity {
     }
 
 
-    public void apicall()
-
-    {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        //String url ="http://google.com";
-
-        final String otp_generated = generateOTP();
-        String url = "https://sendpk.com/api/sms.php?username=923108102439&password=smsapi12&sender=Azmayesgah&mobile=923247648950&message=hello";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent= new Intent(login_page_activity.this, verification_code.class);
-                        intent.putExtra("OTP",otp_generated);
-                        startActivity(intent);
-                        Toast.makeText(login_page_activity.this, "success", Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(login_page_activity.this, "error", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        queue.add(stringRequest);
-    }
-
     public void httprequest(View view)
     {
-        apicall();
+        EditText editText = (EditText) findViewById(R.id.editText);
+        final String phone = editText.getText().toString();
 
+        SharedPreferences prefs = getSharedPreferences("com.example.myapplication1", Context.MODE_PRIVATE);
+        if (prefs.contains("PHONE"))
+        {
+            Toast.makeText(this, "Your preference exists", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(login_page_activity.this, dashboard_activiy.class);
+            startActivity(intent);
+        }
+        else {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            //String url ="http://google.com";
+            final String otp_generated = generateOTP();
+            final String msg = "Thanks for Using Azmayesgah, Your OTP is " + otp_generated;
+            String url = "https://sendpk.com/api/sms.php?username=923108102439&password=smsapil12&sender=Azmayesgah&mobile=" + phone + "&message=" + msg;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Intent intent = new Intent(login_page_activity.this, verification_code.class);
+                            intent.putExtra("OTP", otp_generated);
+                            intent.putExtra("PHONE", phone);
+                            startActivity(intent);
+                            Toast.makeText(login_page_activity.this, "success", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(login_page_activity.this, "error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            queue.add(stringRequest);
+        }
     }
 }
