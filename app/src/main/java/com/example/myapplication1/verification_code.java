@@ -21,8 +21,11 @@ public class verification_code extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification_code);
         otp_generated = getIntent().getStringExtra("OTP");
+<<<<<<< HEAD
         TextView textView = (TextView) findViewById(R.id.textView4);
         textView.setText(otp_generated);
+=======
+>>>>>>> 59888003703e54a65e8aadabf26b998ecf76d7e0
 
     }
 
@@ -31,7 +34,6 @@ public class verification_code extends AppCompatActivity {
         String phone = getIntent().getStringExtra("PHONE");
         EditText editText = (EditText) findViewById(R.id.editText2);
         String otp = editText.getText().toString();
-
 
         SharedPreferences sp = getSharedPreferences("com.example.myapplication1" ,Context.MODE_PRIVATE);
 

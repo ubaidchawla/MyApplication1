@@ -6,21 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".fayazlab">
 
+
     <ScrollView
-        android:id="@+id/scrollView4"
-        android:layout_width="323dp"
-        android:layout_height="388dp"
+        android:id="@+id/sv"
+        android:layout_width="321dp"
+        android:layout_height="428dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797">
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:layout_constraintVertical_bias="0.234">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TEXT_STATUS_ID"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:text="@string/FAYAZLabTestList"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/checkbox1"
@@ -66,8 +77,8 @@
 
             <CheckBox
                 android:id="@+id/checkbox5"
-                android:layout_width="383dp"
-                android:layout_height="49dp"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
                 android:background="@color/black_box"
                 android:text="@string/ALCOHOL"
                 android:textColor="@color/white"
@@ -99,55 +110,46 @@
 
     <ImageView
         android:id="@+id/imageView13"
-        android:layout_width="158dp"
-        android:layout_height="122dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="118dp"
+        android:layout_height="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="249dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="155dp"
+        android:layout_height="38dp"
+        android:gravity="center_horizontal"
         android:text="@string/آزمایشگاه"
         android:textAlignment="center"
         android:textColor="@color/red"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+        android:textSize="30sp"
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="309dp"
-        android:layout_height="49dp"
-        android:text="@string/FAYAZLabTestList"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintBottom_toTopOf="@+id/sv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.402" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="141dp"
         android:layout_height="35dp"
         android:background="@color/red"
+        android:gravity="center_horizontal"
         android:text="@string/next"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.972" />
 </androidx.constraintlayout.widget.ConstraintLayout>

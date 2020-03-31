@@ -97,4 +97,16 @@
     <string name="emn">Enter Mobile Number</string>
     <string name="submit">Submit</string>
     <string name="c">Continue</string>
+    <string name="ameerro">noerror</string>
+    <string name="invalid">invalid_cnic</string>
+    <string name="invalid_cnic">invalid_cnic</string>
+    <string name="namerror">namerror</string>
+    <string name="f_namerror">f_nameerror</string>
+    <string name="DOB">DOB</string>
+    <string name="bg">blood group</string>
+    <string name="age">age</string>
+    <string name="title_activity_locationmap">Map</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>

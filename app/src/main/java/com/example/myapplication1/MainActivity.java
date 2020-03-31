@@ -3,9 +3,11 @@ package com.example.myapplication1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -15,8 +17,18 @@ public class MainActivity extends AppCompatActivity {
     }
     public void cont (View view)
     {
-        Intent intent= new Intent(MainActivity.this, login_page_activity.class);
-        startActivity(intent);
+        SharedPreferences prf = getSharedPreferences("user_details",MODE_PRIVATE);
+
+        if (prf.contains("PHONE"))
+        {
+            Toast.makeText(this, "Your preference exists", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Aghakhanlab.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this, login_page_activity.class);
+            startActivity(intent);
+        }
     }
 }
 

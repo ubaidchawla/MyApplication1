@@ -17,35 +17,64 @@ public class chose_lab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose_lab);
+    }
+public void onRadioButtonClicked(View v){
 
-        RadioGroup rg=(RadioGroup) findViewById(R.id.rg1);
+    RadioGroup rg;
+      RadioButton r1,r2,r3,r4,r5;
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedid) {
-                switch (checkedid)
-            {
-                case R.id.agha:
+      rg=(RadioGroup)findViewById(R.id.rg1);
+
+      r1=(RadioButton)findViewById(R.id.agha);
+      r2=(RadioButton)findViewById(R.id.dow);
+      r3=(RadioButton)findViewById(R.id.s);
+      r4=(RadioButton)findViewById(R.id.quetta);
+      r5=(RadioButton)findViewById(R.id.fayaz);
+
+      boolean checked=((RadioButton)v).isChecked();
+
+      switch (v.getId())
+      {
+          case R.id.agha:
+               if (checked)
+                  {
                     Intent intent= new Intent(chose_lab.this, Aghakhanlab.class);
                     startActivity(intent);
+                  }
+              break;
+           case R.id.dow:
+                if (checked)
+                   {
+                     Intent intent= new Intent(chose_lab.this, daw_lab.class);
+                     startActivity(intent);
+                   }
+              break;
 
-                    case  R.id.dow:
-                        Intent intent1= new Intent(chose_lab.this, daw_lab.class);
-                        startActivity(intent1);
+           case R.id.s:
+                if (checked)
+                   {
+                     Intent intent= new Intent(chose_lab.this, shukatkhanamlab.class);
+                     startActivity(intent);
+                   }
+              break;
+           case R.id.quetta:
+                if(checked)
+                   {
+                     Intent intent= new Intent(chose_lab.this, quetta_lab.class);
+                     startActivity(intent);
+                   }
+              break;
 
-                case R.id.s:
-                    Intent intent2= new Intent(chose_lab.this, shukatkhanamlab.class);
-                    startActivity(intent2);
+           case R.id.fayaz:
+                if(checked)
+                  {
+                    Intent intent= new Intent(chose_lab.this, fayazlab.class);
+                    startActivity(intent);
+                  }
+             break;
 
-                case R.id.quetta:
-                    Intent intent3= new Intent(chose_lab.this, quetta_lab.class);
-                    startActivity(intent3);
-
-                case R.id.fayaz:
-                    Intent intent4= new Intent(chose_lab.this, fayazlab.class);
-                    startActivity(intent4);
-            }
-            }
-        });
-            }
-}
+            default:
+             Toast.makeText(getApplicationContext(),"please choose your laboratory",Toast.LENGTH_SHORT).show();
+                  }
+                  }
+                  }

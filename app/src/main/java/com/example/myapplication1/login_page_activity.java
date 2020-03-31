@@ -66,15 +66,7 @@ public class login_page_activity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         final String phone = editText.getText().toString();
 
-        SharedPreferences prf = getSharedPreferences("user_details",MODE_PRIVATE);
 
-        if (prf.contains("PHONE"))
-        {
-            Toast.makeText(this, "Your preference exists", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(login_page_activity.this, dashboard_activiy.class);
-            startActivity(intent);
-        }
-        else {
             RequestQueue queue = Volley.newRequestQueue(this);
             //String url ="http://google.com";
             final String otp_generated = generateOTP();
@@ -98,6 +90,6 @@ public class login_page_activity extends AppCompatActivity {
             });
 
             queue.add(stringRequest);
-        }
+
     }
 }
